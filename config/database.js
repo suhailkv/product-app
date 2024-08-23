@@ -1,7 +1,6 @@
 const { Sequelize } = require('sequelize');
-
-const mysql = new Sequelize(env.process.MYSQL_DB, env.process.MYSQL_USER, env.process.MYSQL_PASS, {
-  host: env.process.MYSQL_HOST,
+const mysql = new Sequelize(process.env.MYSQL_DB, process.env.MYSQL_USER, process.env.MYSQL_PASS, {
+  host: process.env.MYSQL_HOST,
   dialect: 'mysql',
   logging: false,
   pool: {
@@ -12,8 +11,8 @@ const mysql = new Sequelize(env.process.MYSQL_DB, env.process.MYSQL_USER, env.pr
   },
 });
 
-const postgres = new Sequelize(env.process.PG_DB, env.process.PG_USER, env.process.PG_USER, {
-  host: env.process.PG_USER,
+const postgres = new Sequelize(process.env.PG_DB, process.env.PG_USER, process.env.PG_USER, {
+  host: process.env.PG_USER,
   dialect: 'postgres',
   logging: false,
   pool: {
@@ -23,14 +22,5 @@ const postgres = new Sequelize(env.process.PG_DB, env.process.PG_USER, env.proce
     idle: 10000,
   },
 });
-const init = async () =>{
-    try {
-      await mysql.authenticate();
-      // await postgres.authenticate();
-      console.log('Database connections are healthy.' );
-    } catch (error) {
-      console.error('Database connection error:', error);
-    }
-}
 
-module.exports = { mysql, postgres, init };
+module.exports = { mysql, postgres };
