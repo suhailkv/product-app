@@ -1,10 +1,18 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import AddProductForm from './components/AddProductForm';
+import ProductDetailsPage from './components/ProductDetailsPage';
 
-function App() {
+const App = () => {
   return (
-    <>
-    App Started
-    </>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<AddProductForm />} />
+          <Route path="/productDetails/:id" element={<ProductDetailsPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
