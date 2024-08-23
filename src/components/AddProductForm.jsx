@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { TextField, Button, Container, Typography, Box } from '@mui/material';
 import axios from 'axios';
+import CONSTANTS from '../constants';
 
 const AddProductForm = () => {
   const [name, setName] = useState('');
@@ -11,12 +12,12 @@ const AddProductForm = () => {
     e.preventDefault();
     const product = { name, purchase_price: purchasePrice, sales_price: salesPrice };
     try {
-	    const response = await axios.post(`http://localhost:3000/products`, product);
+	    const response = await axios.post(`${CONSTANTS.BACKEND_URL}/${CONSTANTS.PRODUCT_API}`, product);
       setName('');
       setPurchasePrice('');
       setSalesPrice('');
     } catch (error) {
-      console.error('Error adding product:', error);
+      console.error(error);
     }
   };
 

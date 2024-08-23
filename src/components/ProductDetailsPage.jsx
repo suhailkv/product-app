@@ -3,6 +3,7 @@ import { Button,Typography, Container, Box, Paper, List, ListItem, ListItemText,
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import CONSTANTS from '../constants'
 
 const ProductDetailsPage = () => {
   const navigate = useNavigate()
@@ -14,14 +15,14 @@ const ProductDetailsPage = () => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/products/${id}`);
+        const response = await axios.get(`${CONSTANTS.BACKEND_URL}/${CONSTANTS.PRODUCT_API}/${id}`);
         console.log(response);
         
         setProduct(response.data.product);
         setProfitRecords(response.data.profitRecords);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching product details:', error);
+        console.error( error);
         setLoading(false);
       }
     };
