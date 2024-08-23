@@ -24,6 +24,7 @@ const ProductDetailsPage = () => {
       } catch (error) {
         console.error( error);
         setLoading(false);
+        alert(error.error)
       }
     };
 

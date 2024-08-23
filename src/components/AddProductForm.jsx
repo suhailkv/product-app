@@ -12,11 +12,12 @@ const AddProductForm = () => {
     e.preventDefault();
     const product = { name, purchase_price: purchasePrice, sales_price: salesPrice };
     try {
-	    const response = await axios.post(`${CONSTANTS.BACKEND_URL}/${CONSTANTS.PRODUCT_API}`, product);
+	    await axios.post(`${CONSTANTS.BACKEND_URL}/${CONSTANTS.PRODUCT_API}`, product);
       setName('');
       setPurchasePrice('');
       setSalesPrice('');
     } catch (error) {
+      alert(error.error)
       console.error(error);
     }
   };
