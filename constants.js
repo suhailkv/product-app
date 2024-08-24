@@ -1,0 +1,1 @@
+exports.PRODUCT_API = 'products'
